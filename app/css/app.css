@@ -1,0 +1,137 @@
+/** http://getbootstrap.com/getting-started/#support-ie10-width*/
+
+.amountContainer{
+	position: relative;
+	margin: 0;
+}
+
+.amountImage{
+    height: auto;
+}
+
+.amountDescription{
+	position: absolute;
+    left: 0;
+    top: 50%;
+    text-align: center;
+    font-size: 18px;
+    font-style: oblique;
+    color: #e48c75;
+}
+
+
+
+/** http://getbootstrap.com/getting-started/#support-ie10-width*/
+
+@-webkit-viewport {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@viewport {
+  width: device-width;
+}
+body {
+  /*padding-top: 20px;*/
+  /*padding-bottom: 20px;*/
+}
+.jumbotron, #navbarIndex {
+	margin-bottom: 0;
+}
+
+#footerContainerAboutImage{
+	position: relative;
+	margin: 0;
+}
+#centerFooterContainerAbout{
+	position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-style: oblique;
+    color: #e48c75;
+}
+#footerAboutImage{
+    width: 100%;
+    height: auto;
+    border-bottom: 5px solid #d88c3d;
+}
+
+#headerAboutImage, #footerContainerAboutImage, #contentAbout, #headerAbout, #contentClothes{
+    max-width:100%;
+}
+
+#profileAboutImage{
+	margin-top : -16%; display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container-fluid{
+	padding: 0;
+}
+
+#contentAbout{
+    font-size: 50%;
+    text-align: center;
+}
+
+.col-md-4{
+    padding: 1px;
+}
+
+.clearfix {
+  clear: both;
+}
+.welcome {
+  margin: 30px 0 30px 0;
+  font-family: 'Helvetica Neue';
+}
+.welcome h2 {
+  font-family: 'Helvetica Neue';
+}
+.welcome p {
+  padding: 0 200px 0 200px;
+}
+.welcome p > span {
+  color: #999;
+}
+.uppercase {
+  color: #333 !important;
+  font-weight: bold;
+}
+.mylife {
+  margin: 30px 0 30px 0;
+  font-family: 'Helvetica Neue';
+}
+.mylife h2 {
+  font-family: 'Helvetica Neue';
+}
+
+#contentClothes {
+  margin-top: 1%;
+}
+
+#contentNavClothes {
+  margin: 0;
+  padding-left: 3%;
+}
+
+#contentImageClothes {
+  margin: 0;
+  padding-left: 4%;
+}
+
+.clotheIcon{
+  font-size:24px; 
+  margin: 2%; 
+  color: #c71010;
+}

@@ -1,0 +1,160 @@
+<div class="container-fluid" style="background-color: #88b790;">
+    <div class="row" id="contentClothes">
+        <!-- Blog Post Content Column -->
+        <div class="col-sm-9" id="contentImageClothes">
+        	<div class="row" style="text-align:center;">
+                <div class="row">
+                    <div class="bs-component">
+                    </div>
+                    <ul class="product-list small-block-grid-4">
+                			<li ng-repeat="clothe in clothes  | filter : key">
+                        <div ng-mouseover="changeImage=true" ng-mouseleave="changeImage=false" ng-init="changeImage=false">
+                          <img class="text-center img-rounded" ng-hide="changeImage" ng-src="img/{{ clothe.image }}.jpg" alt="{{clothe.title}}" />
+                          <img class="text-center img-rounded" ng-show="changeImage" ng-src="img/{{ clothe.image1 }}.jpg" alt="{{clothe.title}}" />
+                        </div>
+            					<h3>{{clothe.title}}- {{clothe.price}}$</h3>
+                        <a ng-click="addToCart(clothe);" class ="clotheIcon"><i class="fa fa-cart-plus"></i></a>
+                        <a ng-click="removeClothe(product.id)" class ="clotheIcon"><i class="fa fa-times"></i></a>
+                        <a ng-click="updateClothe(product.id)" class ="clotheIcon"><i class="fa fa-pencil-square-o"></i></a>
+                			</li>
+                		</ul>
+                </div>
+        	</div>
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-sm-3" id="contentNavClothes">
+            <!-- Blog Search Well -->
+            <div class="well" text-align="center;">
+                <h4>Clothes Search</h4>
+                <div class="input-group">
+                  <input type="text" class="form-control" ng-model="key" placeholder="input key word..">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                      <i class="fa fa-search" style="font-size:21px"></i>
+                    </button>
+                  </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+            <!-- Side Widget Well -->
+            <div class="well">
+                <div class="row alert alert-danger" align="center">
+                    Shopping Cart - <button class="btn btn-primary" data-toggle="modal" data-target="#checkout">checkout! <i class="fa fa-university" aria-hidden="true"></i></button>
+                </div>
+                <div class="row alert alert-info" align="center">
+                    <i class="fa fa-money " aria-hidden="true" style="font-size:24px"></i>: {{cart.length}} items in cart, {{getCartPrice()}}$
+                    <div ng-if="cart.length" class="shopping-cart">
+            			
+                      <span class="" ng-repeat="clothe in cart">
+                        <div class="col-md-4" class="amountContainer">
+                          <img ng-src="img/{{clothe.image}}.jpg" class="amountImage" title="{{clothe.title}}" class="img-thumbnail"/>
+                          <div class="amountDescription">
+                            <span class="badge" class="" ng-show="clothe.quantity > 1">
+                              x{{clothe.quantity}}
+                            </span>
+                          </div>
+                        </div>
+                			</span>
+            		    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="checkout" role="dialog" ng-model="checkout">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+            <div class="modal-body">
+                <form name="checkoutForm" stripe-form="stripeCallback" ng-submit="onSubmit()" data-abide>
+
+                	<div ng-if="processing" us-spinner></div>
+
+                	<fieldset>
+                		<legend>Shipping Information</legend>
+
+                		<div class="row">
+
+                			<label class="large-12 columns">Name
+                				<input ng-model="name" type="text" placeholder="Name">
+                			</label>
+
+                			<label class="large-12 columns">Address
+                				<input ng-model="address" type="text" placeholder="Address">
+                			</label>
+                		</div>
+                	</fieldset>
+
+                	<fieldset>
+                		<legend>Payment Information</legend>
+
+                		<div class="row">
+                			<div class="large-6 columns" ng-class="{error: checkoutForm.number.$invalid}">
+                				<label>Card Information
+                					<input ng-model="number" name="number" payments-format="card" payments-validate="card"
+                					       placeholder="Card Number" type="text"/>
+                				</label>
+                				<small class="error">Invalid card number</small>
+                			</div>
+                			<div class="large-3 columns" ng-class="{error: checkoutForm.expiry.$invalid}">
+                				<label>Expiry
+                					<input ng-model="expiry" name="expiry" payments-format="expiry" payments-validate="expiry"
+                					       placeholder="Expiry" type="text"/>
+                				</label>
+                				<small class="error">Invalid date.</small>
+                			</div>
+                			<div class="large-3 columns" ng-class="{error: checkoutForm.cvc.$invalid}">
+                				<label>CVC
+                					<input ng-model="cvc" name="cvc" payments-format="cvc" payments-validate="cvc"
+                					       placeholder="CVC" type="text"/>
+                				</label>
+                				<small class="error">Invalid CVC.</small>
+                			</div>
+
+                			<div class="large-12 columns">
+                				<strong>
+                					Amount to pay: {{getCartPrice()}}$
+                				</strong>
+                			</div>
+                		</div>
+                	</fieldset>
+
+                	<alert ng-if="stripeError" type="'alert'" close="hideAlerts()">
+                		Stripe returned an error: {{stripeError}}
+                	</alert>
+
+                	<alert ng-if="stripeToken" close="hideAlerts()">
+                		Stripe successfully acquired! Token: {{stripeToken}}
+                	</alert>
+
+                	<div class="clearfix">
+                		<div class="right">
+                      <button type="button" class="cancel" data-dismiss="modal">Cancel</button>
+                			<button type="submit" ng-disabled="checkoutForm.$invalid">Place Order</button>
+                		</div>
+                	</div>
+                </form>
+            </div>
+          </div>
+      
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+      <div class="row" style="text-align: center;">
+        <div class="col-lg-12">
+          <p>Copyright &copy; at-dungnv</p>
+        </div>
+      </div>
+    </footer>
+</div>
