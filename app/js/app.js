@@ -8,7 +8,8 @@ var templateApp = angular.module('templateApp', [
   'angularPayments',
   'mm.foundation', 
   'ngAnimate', 
-  'angularSpinner'
+  'angularSpinner',
+  'ngResource'
 ]);
 
 templateApp.config(['$routeProvider', function ($routeProvider) {

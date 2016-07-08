@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "This project is an application skeleton for a typical AngularJS 1 web app.",
   "authors": [
-    "Hung BCP"
+    "Dung NV"
   ],
   "license": "MIT",
   "homepage": "https://github.com/at-hungbcp/app-template",
@@ -27,6 +27,7 @@
     "spin": "^1.1.6",
     "stripe-angular": "^1.0.2",
     "jquery": "^3.0.0",
-    "font-awesome": "fontawesome#^4.6.3"
+    "font-awesome": "fontawesome#^4.6.3",
+    "angular-resource": "^1.5.7"
   }
 }
